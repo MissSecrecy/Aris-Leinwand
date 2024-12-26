@@ -5,9 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aris Leinwand</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styles für die Buttons */
+    .controls {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+
+    .controls button {
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 14px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #555;
+    }
+  </style>
 </head>
 <body>
   
+  <div class="controls">
+    <button id="fullscreen-btn">Vollbild</button>
+    <button id="reload-btn">Neu laden</button>
+  </div>
+
   <div class="wrapper">
     <img src="images/1.png" alt="" id="img1">
     <img src="test.png" alt="" id="img2">
@@ -32,6 +61,24 @@
       
       // Apply eraser plugin to img2
       $('#img2').eraser({ size: 50 });
+
+      // Vollbild-Button Funktion
+      $('#fullscreen-btn').click(function() {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+          document.documentElement.msRequestFullscreen();
+        }
+      });
+
+      // Seite neu laden
+      $('#reload-btn').click(function() {
+        location.reload();
+      });
     });
   </script>
 
