@@ -64,6 +64,27 @@
 
       // Vollbild-Button Funktion
       $('#fullscreen-btn').click(function() {
+        enterFullscreen();
+      });
+
+      // Seite neu laden
+      $('#reload-btn').click(function() {
+        if (document.fullscreenElement) {
+          // Speichere Vollbildstatus im localStorage
+          localStorage.setItem('stayFullscreen', 'true');
+        } else {
+          localStorage.removeItem('stayFullscreen');
+        }
+        location.reload();
+      });
+
+      // Prüfe nach dem Laden, ob Vollbild aktiviert werden soll
+      if (localStorage.getItem('stayFullscreen') === 'true') {
+        enterFullscreen();
+      }
+
+      // Funktion, um Vollbildmodus zu aktivieren
+      function enterFullscreen() {
         if (document.documentElement.requestFullscreen) {
           document.documentElement.requestFullscreen();
         } else if (document.documentElement.mozRequestFullScreen) { // Firefox
@@ -73,12 +94,7 @@
         } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
           document.documentElement.msRequestFullscreen();
         }
-      });
-
-      // Seite neu laden
-      $('#reload-btn').click(function() {
-        location.reload();
-      });
+      }
     });
   </script>
 
