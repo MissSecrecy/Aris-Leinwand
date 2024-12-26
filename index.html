@@ -81,13 +81,12 @@
       
       // Apply eraser plugin to img2 with initial size
       var brushSize = 50; // Default size
-      $('#img2').eraser({ size: brushSize });
-      
       // Update eraser size when selecting from dropdown
       $('#brush-size').change(function() {
         brushSize = $(this).val();
         $('#img2').eraser({ size: brushSize });
       });
+      $('#img2').eraser({ size: brushSize });
 
       // Reload button functionality
       $('#reload-btn').click(function() {
