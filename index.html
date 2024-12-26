@@ -9,7 +9,7 @@
 <body>
   
   <div class="wrapper">
-    <img src="1.jpg" alt="" id="img1">
+    <img src="images/1.png" alt="" id="img1">
     <img src="test.jpg" alt="" id="img2">
   </div> 
   
@@ -19,15 +19,16 @@
     $(document).ready(function() {
       // Array of image file paths
       var imagePool = [
-        '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', 
-        '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg'
+        'images/1.png', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.png', 
+        'images/6.png', 'images/7.png', 'images/8.png', 'images/9.png', 'images/10.png', 
+        'images/11.png', 'images/12.png'
       ];
       
       // Random image selection
       var randomImage = imagePool[Math.floor(Math.random() * imagePool.length)];
       
       // Set random image as src for img1
-      $('#img1').attr('src', 'C:/Users/Secrecy/Desktop/Annika/' + randomImage);
+      $('#img1').attr('src', 'images/' + randomImage);
       
       // Apply eraser plugin to img2
       $('#img2').eraser({ size: 50 });
