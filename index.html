@@ -81,15 +81,21 @@
       $('#img1').attr('src', randomImage);
       
       // Apply eraser plugin to img2 with initial size
-      var brushSize = 50; // Default size
-      // Update eraser size when selecting from dropdown
-      $('#brush-size').change(function() {
-    let brushSize = $(this).val(); // Hole den Wert aus dem Dropdown
-        console.log("Pinselgröße ausgewählt: " + brushSize); // Ausgabe für Debugging
-        $('#img2').eraser({ 'size', brushSize }); // Initialisiere Eraser mit neuer Größe
-    });
-      $('#img2').eraser( size: brushSize ); // Initialisierung der eraser Funktion
-      
+      $(document).ready(function() {
+            // Standardgröße des Pinsels
+            let brushSize = 50; 
+
+            // Initialisiere die eraser-Funktion mit der Standardgröße
+            $('#img2').eraser({ size: brushSize });
+
+            // Ändere die Pinselgröße, wenn der Dropdown-Wert geändert wird
+            $('#brush-size').change(function() {
+                brushSize = $(this).val(); // Hole den Wert aus dem Dropdown
+                console.log("Pinselgröße ausgewählt: " + brushSize); // Debugging-Ausgabe
+                $('#img2').eraser('size', brushSize); // Aktualisiere nur die Größe
+            });
+        });
+
       // Reload button functionality
       $('#reload-btn').click(function() {
         location.reload();
