@@ -91,7 +91,6 @@
             // Ändere die Pinselgröße, wenn der Dropdown-Wert geändert wird
             $('#brush-size').change(function() {
                 brushSize = $(this).val(); // Hole den Wert aus dem Dropdown
-                console.log("Pinselgröße ausgewählt: " + brushSize); // Debugging-Ausgabe
                 $('#img2').eraser('size', brushSize); // Aktualisiere nur die Größe
             });
         });
