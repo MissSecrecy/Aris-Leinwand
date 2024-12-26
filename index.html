@@ -84,11 +84,11 @@
       var brushSize = 50; // Default size
       // Update eraser size when selecting from dropdown
       $('#brush-size').change(function() {
-        alert("Dropdown geändert!");
-      });
-
-
-      $('#img2').eraser({ size: brushSize }); // Initialisierung der eraser Funktion
+    let brushSize = $(this).val(); // Hole den Wert aus dem Dropdown
+        console.log("Pinselgröße ausgewählt: " + brushSize); // Ausgabe für Debugging
+        $('#img2').eraser({ 'size', brushSize }); // Initialisiere Eraser mit neuer Größe
+    });
+      $('#img2').eraser( size: brushSize ); // Initialisierung der eraser Funktion
       
       // Reload button functionality
       $('#reload-btn').click(function() {
