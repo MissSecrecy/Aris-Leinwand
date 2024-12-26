@@ -83,7 +83,8 @@
       // Apply eraser plugin to img2 with initial size
       $(document).ready(function() {
             // Standardgröße des Pinsels
-            let brushSize = 50; 
+            let deviceScale = window.devicePixelRatio || 1;
+            let brushSize = 50 * deviceScale;
 
             // Initialisiere die eraser-Funktion mit der Standardgröße
             $('#img2').eraser({ size: brushSize });
@@ -91,6 +92,7 @@
             // Ändere die Pinselgröße, wenn der Dropdown-Wert geändert wird
             $('#brush-size').change(function() {
                 brushSize = $(this).val(); // Hole den Wert aus dem Dropdown
+                brushSize = brushSize * deviceScale;
                 $('#img2').eraser('size', brushSize); // Aktualisiere nur die Größe
             });
         });
