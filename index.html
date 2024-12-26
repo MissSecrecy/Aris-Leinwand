@@ -6,30 +6,36 @@
   <title>Aris Leinwand</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Styles für den Reload Button */
-    .reload-button {
+    /* Styles für den Dropdown */
+    .dropdown {
       position: absolute;
       top: 10px;
-      left: 10px;
+      right: 10px;
       z-index: 10;
-      padding: 10px 15px;
-      font-size: 14px;
-      background-color: #333;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
     }
-
-    .reload-button:hover {
-      background-color: #555;
+    .dropdown select {
+      padding: 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
   
-  <!-- Reload Button -->
-  <button class="reload-button" id="reload-btn">Reload</button>
+  <!-- Dropdown Menü für Pinselgröße -->
+  <div class="dropdown">
+    <label for="brush-size">Pinselgröße:</label>
+    <select id="brush-size">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="35">35</option>
+      <option value="50">50</option>
+      <option value="70">70</option>
+    </select>
+  </div>
+
+  <button class="reload-button" id="reload-btn">Neu laden</button>
 
   <div class="wrapper">
     <img src="images/1.png" alt="" id="img1">
@@ -53,40 +59,19 @@
       // Set random image as src for img1
       $('#img1').attr('src', randomImage);
       
-      // Apply eraser plugin to img2
-      $('#img2').eraser({ size: 50 });
+      // Apply eraser plugin to img2 with initial size
+      var brushSize = 50; // Default size
+      $('#img2').eraser({ size: brushSize });
+      
+      // Update eraser size when selecting from dropdown
+      $('#brush-size').change(function() {
+        brushSize = $(this).val();
+        $('#img2').eraser({ size: brushSize });
+      });
 
       // Reload button functionality
       $('#reload-btn').click(function() {
         location.reload();
-      });
-
-      // Double-click for fullscreen
-      $(document).on('dblclick', function() {
-        if (document.fullscreenElement) {
-          // Exit fullscreen
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.webkitExitFullscreen) { // Safari
-            document.webkitExitFullscreen();
-          } else if (document.mozCancelFullScreen) { // Firefox
-            document.mozCancelFullScreen();
-          } else if (document.msExitFullscreen) { // IE/Edge
-            document.msExitFullscreen();
-          }
-        } else {
-          // Enter fullscreen
-          var docElm = document.documentElement;
-          if (docElm.requestFullscreen) {
-            docElm.requestFullscreen();
-          } else if (docElm.webkitRequestFullscreen) { // Safari
-            docElm.webkitRequestFullscreen();
-          } else if (docElm.mozRequestFullScreen) { // Firefox
-            docElm.mozRequestFullScreen();
-          } else if (docElm.msRequestFullscreen) { // IE/Edge
-            docElm.msRequestFullscreen();
-          }
-        }
       });
     });
   </script>
